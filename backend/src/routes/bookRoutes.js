@@ -10,7 +10,7 @@ router.post('/books', verifyToken, authorizeRole('librarian','admin'), async (re
         const newBook = await Book.createBook(req.body); // calling the create book function from the Book model
         res.status(201).json({
             message: "Book added successfully",
-            book: newBook[0]
+            book: newBook
         });
     }catch (err){
         res.status(500).json({

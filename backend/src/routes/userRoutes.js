@@ -1,5 +1,6 @@
 const express = require('express')
-const router = require('./bookRoutes');
+// const router = require('./bookRoutes');
+const router = express.Router();
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
 const User = require('../models/userModel');
@@ -8,7 +9,7 @@ const { verifyToken, authorizeRole } = require('../middleware/authMiddleware');
 
 
 //define a secrete JWT key 
-const JWT_SECRET = "secret_key_123";
+const JWT_SECRET = process.env.JWT_SECRET || "secret_key_123";
 
 //user registration route to create new user POST/user/register (only for the ADMIN)
 router.post('/register', verifyToken, authorizeRole('admin'), async (req, res) => {

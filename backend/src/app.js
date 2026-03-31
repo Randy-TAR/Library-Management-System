@@ -9,7 +9,7 @@ const PORT =  3000;
 // Middleware: This parses JSON data sent in POST requests
 app.use(express.json()); // all express to ready the req.body
 
-app.use('/api/books', bookRoutes); //makes all book routes start with api/books
+app.use('/api/', bookRoutes); //makes all book routes start with api/books
 app.use('/api/users', userRoutes); // makes all user routes start with api/users
 
 
@@ -40,5 +40,5 @@ app.listen(PORT, () => {
     console.log(`🚀 Server is running on http://localhost:${PORT}`);
     console.log(`📡 GET    http://localhost:${PORT}/api/books`);
     console.log(`📩 POST   http://localhost:${PORT}/api/books`);
-    // testConnection();
+    testConnection();
 })
