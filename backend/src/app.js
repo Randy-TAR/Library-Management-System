@@ -2,6 +2,7 @@ const express = require('express');
 const pool = require('./config/db');
 const bookRoutes = require('./routes/bookRoutes')
 const userRoutes = require('./routes/userRoutes');
+const borrowRoutes = require('./routes/borrowRoutes');
 
 const app = express();
 const PORT =  3000;
@@ -9,8 +10,9 @@ const PORT =  3000;
 // Middleware: This parses JSON data sent in POST requests
 app.use(express.json()); // all express to ready the req.body
 
-app.use('/api/', bookRoutes); //makes all book routes start with api/books
+app.use('/api/books', bookRoutes); //makes all book routes start with api/books
 app.use('/api/users', userRoutes); // makes all user routes start with api/users
+app.use('/api/borrows', borrowRoutes);
 
 
 async function testConnection() {

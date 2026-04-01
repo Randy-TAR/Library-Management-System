@@ -4,15 +4,15 @@ const Book = {
 
     // adding a book to the DB
     async createBook(data) {
-        const {book_id, lib_id, tittle, authour, category, description, quantity, available_count, created_at} = data;
+        const {lib_id, tittle, authour, category, description, quantity, available_count, created_at} = data;
 
         const query = `
-        INSERT INTO books (book_id, lib_id, tittle, authour, category, description, quantity, available_count, created_at)
-        VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)
+        INSERT INTO books (lib_id, tittle, authour, category, description, quantity, available_count)
+        VALUES ($1, $2, $3, $4, $5, $6, $7)
         RETURNING *;
         `;
 
-        const values = [book_id, lib_id, tittle, authour, category, description, quantity, available_count, created_at];
+        const values = [lib_id, tittle, authour, category, description, quantity, available_count];
 
         const result = await pool.query(query, values);
         return result.rows[0];
